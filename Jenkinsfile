@@ -4,14 +4,22 @@ pipeline {
     stages {
         stage("Build") {
             steps {
-                sh "mvn compile"
+                sh '''
+                set +e
+                set +x
+                mvn compile
+                '''
             }
         }
 
         stage("Test") {
             steps {
                 wrap([$class: "Xvfb", debug: true, autoDisplayName: true]) {
-                    sh "mvn test"
+                    sh '''
+                    set +e
+                    set +x
+                    mvn test
+                    '''
                 }
             }
         }
