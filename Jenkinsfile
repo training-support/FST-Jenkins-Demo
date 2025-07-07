@@ -5,6 +5,7 @@ pipeline {
         stage("Build") {
             steps {
                 sh '''
+                #!/bin/bash
                 set +e
                 set +x
                 mvn compile
@@ -16,6 +17,7 @@ pipeline {
             steps {
                 wrap([$class: "Xvfb", debug: true, autoDisplayName: true]) {
                     sh '''
+                    #!/bin/bash
                     set +e
                     set +x
                     mvn test
